@@ -5,25 +5,25 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def levelOrder(self, root: TreeNode) -> List[List[int]]:
-        result = list()
-        
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
         if root is None:
-            return result
-    
+            return []
+        
+        result = list() # Sta[ck
         queue = [root]
         
         while (queue):
             level = list()
             n = len(queue)
             for i in range(0, n):
-                x = queue.pop(0)
-                level.append(x.val)
-                if x.left:
-                    queue.append(x.left)
-                if x.right:
-                    queue.append(x.right)
+                node = queue.pop(0)
+                level.append(node.val)
+                
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
             
-            result.append(level)
+            result.insert(0, level)
         
         return result
