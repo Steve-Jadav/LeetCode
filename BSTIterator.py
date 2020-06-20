@@ -7,16 +7,21 @@
 class BSTIterator:
 
     def __init__(self, root: TreeNode):
-        self.inorder = list()
+        self.index = -1
+        self.sorted_nodes = list()
+        self.__inorder(root)
+
+    def __inorder(self, root: TreeNode):
         stack = list()
         current = root
+
         while True:
             if current:
                 stack.append(current)
                 current = current.left
             elif stack:
                 current = stack.pop()
-                self.inorder.append(current.val)
+                self.sorted_nodes.append(current.val)
                 current = current.right
             else:
                 break
@@ -25,19 +30,14 @@ class BSTIterator:
         """
         @return the next smallest number
         """
-        x = self.inorder.pop(0)
-        return x
-        
+        self.index += 1
+        return self.sorted_nodes[self.index]
 
     def hasNext(self) -> bool:
         """
         @return whether we have a next smallest number
         """
-        if self.inorder:
-            return True
-        
-        return False
-
+        return self.index < len(self.sorted_nodes) - 1
 
 # Your BSTIterator object will be instantiated and called as such:
 # obj = BSTIterator(root)
