@@ -8,15 +8,14 @@ class Solution:
         if head == None:
             return head
         
-        current = head.next
-        previous = head
+        start = head
+        iterator = head
         
-        while current:
-            if current.val != previous.val:
-                previous.next = current
-                previous = previous.next
-            
-            current = current.next
-            
-        previous.next = None
+        while iterator:
+            if start.val != iterator.val:
+                start = start.next
+                start.val = iterator.val
+            iterator = iterator.next
+        
+        start.next = None
         return head
