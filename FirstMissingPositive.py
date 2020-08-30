@@ -4,7 +4,6 @@ class Solution:
         if (nums == None or len(nums) == 0):
             return 1
 
-        nums = list(set(nums))
         nums.sort()
 
         missing = 1
@@ -12,6 +11,9 @@ class Solution:
         for i in range(0, len(nums)):
             if nums[i] <= 0:
                 continue
+	
+	    if i > 0 and nums[i] == nums[i - 1]:
+		continue
 
             if nums[i] == missing:
                 missing += 1
