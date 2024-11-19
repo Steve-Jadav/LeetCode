@@ -7,13 +7,16 @@ class Solution:
         curr = s
 
         while max_rotations != 0:
-            curr = self.rotateLeft(curr)
+            curr = self.__rotateLeft(curr)
             if curr == goal:
                 return True
 
         return False
     
-    def rotateLeft(self, s: str) -> str:
+    def rotateStringV2(self, s: str, goal: str) -> bool:
+        return goal in s+s
+    
+    def __rotateLeft(self, s: str) -> str:
         if s is None or len(s) == 0:
             return ""
         
